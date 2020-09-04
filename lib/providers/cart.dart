@@ -15,7 +15,8 @@ class CartItem {
 }
 
 class Cart with ChangeNotifier {
-  Map<String, CartItem> _items = {}; // Hashと同じ // _itemsをカートがからの場合でもinitializeできるようにす = {}をつける。
+  Map<String, CartItem> _items =
+      {}; // Hashと同じ // _itemsをカートがからの場合でもinitializeできるようにす = {}をつける。
 
   Map<String, CartItem> get items {
     return {..._items};
@@ -63,6 +64,11 @@ class Cart with ChangeNotifier {
 
   void removeItem(String productId) {
     _items.remove(productId);
+    notifyListeners();
+  }
+
+  void clear() {
+    _items = {};
     notifyListeners();
   }
 }
